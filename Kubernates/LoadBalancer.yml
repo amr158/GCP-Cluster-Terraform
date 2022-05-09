@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-lb
+spec:
+  type: LoadBalancer
+  selector:
+    tier: front-end
+  ports:
+    - port: 8000
+      targetPort: 8000
+      nodePort: 30087

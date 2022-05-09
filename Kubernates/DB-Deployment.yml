@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployemnt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      tier: back-end
+  template:
+    metadata:
+      name: redis
+      labels:
+        tier: back-end
+    spec:
+      containers:
+      - name: redis
+        image: gcr.io/amr-gcp/redis
+        ports:
+        - containerPort: 6379

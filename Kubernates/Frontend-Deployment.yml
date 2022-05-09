@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: front-end
+  template:
+    metadata:
+      labels:
+        tier: front-end
+    spec:
+      containers:
+      - name: front-end-app
+        image: gcr.io/amr-gcp/simple-web-app
+        ports:
+        - containerPort: 8000
+        env:
+          - name: ENVIRONMENT
+            value: dev
+          - name: HOST
+            value: localhost
+          - name: PORT 
+            value: "8000"
+          - name: REDIS_HOST 
+            value: localhost
+          - name: REDIS_PORT
+            value: "6379"
+          - name: REDIS_DB
+            value: "0"
